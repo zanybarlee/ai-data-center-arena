@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 
 export interface AgentCardProps {
@@ -28,6 +29,15 @@ export function AgentCard({
   className
 }: AgentCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Create path for product detail page
+  const getProductPath = () => {
+    if (name === "ThreatShield AI") {
+      return "/products/threatshield-ai";
+    }
+    // For other products, just return # for now
+    return "#";
+  };
 
   return (
     <div 
@@ -100,16 +110,18 @@ export function AgentCard({
             )}
           </span>
           
-          <button 
-            className={cn(
-              "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300",
-              isHovered 
-                ? "bg-primary text-white" 
-                : "bg-transparent text-primary border border-primary/30"
-            )}
-          >
-            {isHovered ? "Deploy Now" : "View Details"}
-          </button>
+          <Link to={getProductPath()}>
+            <button 
+              className={cn(
+                "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300",
+                isHovered 
+                  ? "bg-primary text-white" 
+                  : "bg-transparent text-primary border border-primary/30"
+              )}
+            >
+              {isHovered ? "Deploy Now" : "View Details"}
+            </button>
+          </Link>
         </div>
       </div>
     </div>
