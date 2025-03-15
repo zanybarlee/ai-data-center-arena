@@ -32,11 +32,17 @@ export function AgentCard({
   
   // Create path for product detail page
   const getProductPath = () => {
-    if (name === "ThreatShield AI") {
-      return "/products/threatshield-ai";
-    }
-    // For other products, just return # for now
-    return "#";
+    const productNameToPath = {
+      "ThreatShield AI": "/products/threatshield-ai",
+      "FailurePredictor Pro": "/products/failurepredictor-pro",
+      "ServerGuard AI": "/products/serverguard-ai",
+      "NetworkHealth Monitor": "/products/networkhealth-monitor",
+      "PowerFlow Optimizer": "/products/powerflow-optimizer",
+      "CoolingSmart AI": "/products/coolingsmart-ai",
+      "WorkloadBalancer": "/products/workloadbalancer"
+    };
+    
+    return productNameToPath[name] || "#";
   };
 
   return (
