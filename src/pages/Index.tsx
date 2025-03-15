@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -120,6 +119,42 @@ const securityAgents = [
   }
 ];
 
+const designBuildAgents = [
+  {
+    id: "db-001",
+    name: "DataCenter Architect AI",
+    description: "AI-powered data center design tool that optimizes rack placement, cooling flow, and power distribution for maximum efficiency and uptime.",
+    category: "Design & Build",
+    rating: 4.9,
+    reviews: 76,
+    image: "https://images.unsplash.com/photo-1556760544-74068565f05c?q=80&w=2070&auto=format&fit=crop",
+    tags: ["Architecture", "3D Modeling", "Thermal Mapping"],
+    price: "$299/mo"
+  },
+  {
+    id: "db-002",
+    name: "InfraPlanner Pro",
+    description: "Creates scalable data center infrastructure plans with AI-optimized cabling, networking and power redundancy configurations.",
+    category: "Design & Build",
+    rating: 4.7,
+    reviews: 64,
+    image: "https://images.unsplash.com/photo-1517292987719-0369a794ec0f?q=80&w=2074&auto=format&fit=crop",
+    tags: ["Infrastructure", "Scalability", "Redundancy"],
+    price: "$249/mo"
+  },
+  {
+    id: "db-003",
+    name: "CoolingDesigner AI",
+    description: "Specialized agent for designing optimal cooling solutions using predictive airflow modeling and heat dissipation analysis.",
+    category: "Design & Build",
+    rating: 4.8,
+    reviews: 52,
+    image: "https://images.unsplash.com/photo-1583160247711-2191776b4b91?q=80&w=2072&auto=format&fit=crop",
+    tags: ["Cooling", "Thermal Analysis", "Energy Efficiency"],
+    price: "Free"
+  }
+];
+
 const Index = () => {
   useEffect(() => {
     // Scroll to top on page load
@@ -161,6 +196,13 @@ const Index = () => {
             subtitle="Advanced security protocols and regulatory compliance monitoring to protect your data center from threats and ensure legal compliance."
             agents={securityAgents}
             className="py-24"
+          />
+          
+          <CategorySection 
+            title="AI Data Center Design & Build Agents"
+            subtitle="Intelligent agents that assist in planning, designing, and optimizing data center layouts for maximum efficiency, scalability, and reliability."
+            agents={designBuildAgents}
+            className="py-24 bg-background"
           />
         </div>
         
