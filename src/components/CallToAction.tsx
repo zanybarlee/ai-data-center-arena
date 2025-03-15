@@ -5,7 +5,7 @@ import { Rocket, Calendar } from 'lucide-react';
 import { useActionModals } from '@/hooks/use-action-modals';
 
 const CallToAction = () => {
-  const { openGetStarted, openScheduleDemo } = useActionModals();
+  const { openGetStarted, openScheduleDemo, isGetStartedOpen } = useActionModals();
 
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-secondary to-background">
@@ -22,6 +22,7 @@ const CallToAction = () => {
             className="w-full sm:w-auto rounded-full"
             onClick={() => {
               console.log("CallToAction: Get Started button clicked");
+              console.log("Current modal state before click:", isGetStartedOpen);
               openGetStarted();
             }}
           >

@@ -1,6 +1,13 @@
 
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { useState, useEffect } from "react";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription, 
+  DialogFooter 
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +24,14 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Reset form when modal closes
+  useEffect(() => {
+    if (!open) {
+      setEmail("");
+      setName("");
+    }
+  }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +57,6 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
     
     setIsSubmitting(false);
     onOpenChange(false);
-    setEmail("");
-    setName("");
   };
 
   console.log("GetStartedModal rendered, open state:", open);
