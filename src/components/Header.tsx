@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
-import { Store, TestTube, Upload, FileText, Calendar, BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake } from 'lucide-react';
+import { Store, TestTube, Upload, FileText, Calendar, BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, ChevronDown } from 'lucide-react';
 import { useGetStartedContext } from '@/App';
 import { useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 export function Header() {
@@ -70,83 +70,88 @@ export function Header() {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-4">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {mainNavItems.map((item) => (
-                <NavigationMenuItem key={item.title}>
-                  <NavigationMenuLink asChild>
-                    <a 
-                      href={item.href}
-                      className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-2 px-3 py-2"
-                    >
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-              
-              {/* Resources Dropdown */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-foreground/80">
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList>
+            {/* Main Navigation Items */}
+            {mainNavItems.map((item) => (
+              <NavigationMenuItem key={item.title}>
+                <a 
+                  href={item.href}
+                  className={navigationMenuTriggerStyle()}
+                >
                   <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    <span>Resources</span>
+                    <item.icon className="w-4 h-4" />
+                    <span>{item.title}</span>
                   </div>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[220px] gap-2 p-4">
-                    {resourcesItems.map((item) => (
-                      <li key={item.title}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={item.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="flex items-center gap-2">
-                              <item.icon className="w-4 h-4" />
-                              <span className="text-sm font-medium">{item.title}</span>
-                            </div>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
+                </a>
               </NavigationMenuItem>
-              
-              {/* Company Dropdown */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-foreground/80">
-                  <div className="flex items-center gap-2">
-                    <Building className="w-4 h-4" />
-                    <span>Company</span>
-                  </div>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[220px] gap-2 p-4">
-                    {companyItems.map((item) => (
-                      <li key={item.title}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={item.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="flex items-center gap-2">
-                              <item.icon className="w-4 h-4" />
-                              <span className="text-sm font-medium">{item.title}</span>
-                            </div>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </nav>
+            ))}
+            
+            {/* Resources Dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Resources</span>
+                </div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {resourcesItems.map((item) => (
+                    <li key={item.title}>
+                      <NavigationMenuLink asChild>
+                        <a
+                          href={item.href}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="flex items-center gap-2 text-sm font-medium leading-none">
+                            <item.icon className="h-4 w-4" />
+                            <span>{item.title}</span>
+                          </div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            {getResourceDescription(item.title)}
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            
+            {/* Company Dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>
+                <div className="flex items-center gap-2">
+                  <Building className="w-4 h-4" />
+                  <span>Company</span>
+                </div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {companyItems.map((item) => (
+                    <li key={item.title}>
+                      <NavigationMenuLink asChild>
+                        <a
+                          href={item.href}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="flex items-center gap-2 text-sm font-medium leading-none">
+                            <item.icon className="h-4 w-4" />
+                            <span>{item.title}</span>
+                          </div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            {getCompanyDescription(item.title)}
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className="flex items-center space-x-4">
           <Button 
@@ -295,6 +300,41 @@ export function Header() {
       </div>
     </header>
   );
+}
+
+// Helper functions to get descriptions for menu items
+function getResourceDescription(title: string): string {
+  switch (title) {
+    case 'Documentation':
+      return 'Comprehensive guides and reference documentation for MCP platform.';
+    case 'API Reference':
+      return 'Detailed API documentation for integrating with MCP services.';
+    case 'Case Studies':
+      return 'Real-world examples of how organizations use MCP to transform their data centers.';
+    case 'Knowledge Base':
+      return 'Articles and solutions to common questions about MCP platform.';
+    case 'Tutorials':
+      return 'Step-by-step guides to help you get started with MCP features.';
+    default:
+      return '';
+  }
+}
+
+function getCompanyDescription(title: string): string {
+  switch (title) {
+    case 'About Us':
+      return 'Learn about our mission, vision, and the team behind MCP.';
+    case 'Blog':
+      return 'Latest news, updates, and insights from the MCP team.';
+    case 'Careers':
+      return 'Join our team and help shape the future of AI in data centers.';
+    case 'Contact Us':
+      return 'Get in touch with our sales, support, or partnership teams.';
+    case 'Partner Program':
+      return 'Collaborate with MCP to deliver innovative solutions to customers.';
+    default:
+      return '';
+  }
 }
 
 export default Header;
