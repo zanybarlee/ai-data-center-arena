@@ -1,3 +1,4 @@
+
 import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, FileText, Bot } from 'lucide-react';
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,8 +9,6 @@ export function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center">
               <img src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" alt="Akira Logo" className="h-8" />
-              <div className="ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
-            </div>
             </div>
             <p className="mt-4 text-sm text-foreground/70 max-w-xs">
               The premier marketplace for certified AI agents specialized in data center optimization and management.

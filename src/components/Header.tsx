@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
@@ -94,9 +95,6 @@ export function Header() {
               alt="Akira Logo" 
               className="h-8" 
             />
-            <div className="hidden md:block ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
-              BETA
-            </div>
           </Link>
         </div>
 
@@ -198,9 +196,6 @@ export function Header() {
             alt="Akira Logo" 
             className="h-10" 
           />
-          <div className="mt-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium text-center">
-            BETA
-          </div>
         </div>
         
         <nav className="flex flex-col items-center space-y-6 w-full px-6">
