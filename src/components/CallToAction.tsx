@@ -20,7 +20,7 @@ const CallToAction = () => {
           <Button 
             size="lg" 
             className="w-full sm:w-auto rounded-full"
-            onClick={openGetStarted}
+            onClick={() => openGetStarted()}
           >
             <Rocket className="mr-2 h-5 w-5" />
             Get Started
@@ -29,7 +29,7 @@ const CallToAction = () => {
             size="lg" 
             variant="outline" 
             className="w-full sm:w-auto rounded-full"
-            onClick={openScheduleDemo}
+            onClick={() => openScheduleDemo()}
           >
             <Calendar className="mr-2 h-5 w-5" />
             Schedule Demo
