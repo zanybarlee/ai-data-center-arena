@@ -1,5 +1,5 @@
 
-import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, FileText } from 'lucide-react';
+import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, FileText, Bot } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -81,6 +81,7 @@ export function Footer() {
                   { name: 'Case Studies', href: '/resources/case-studies', icon: BookText },
                   { name: 'Knowledge Base', href: '/resources/knowledge-base', icon: BookText },
                   { name: 'Tutorials', href: '/resources/tutorials', icon: GraduationCap },
+                  { name: 'Design & Build Agents', href: '/resources/design-build-agents', icon: Bot },
                 ].map((link) => (
                   <li key={link.name}>
                     <a 
