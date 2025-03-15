@@ -1,5 +1,5 @@
 
-import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake } from 'lucide-react';
+import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, FileText } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
