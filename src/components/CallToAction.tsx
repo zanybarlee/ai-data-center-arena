@@ -1,7 +1,11 @@
 
 import React from 'react';
+import { useGetStartedContext } from '@/App';
+import { Button } from '@/components/ui/button';
 
 const CallToAction = () => {
+  const { openGetStarted } = useGetStartedContext();
+
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-secondary to-background">
       <div className="container mx-auto max-w-4xl text-center">
@@ -12,12 +16,20 @@ const CallToAction = () => {
           Join the leading AI data center revolution with MCP certified agents. Experience increased efficiency, reduced costs, and enhanced security.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg">
+          <Button 
+            size="lg"
+            className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
+            onClick={openGetStarted}
+          >
             Get Started
-          </button>
-          <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg">
+          </Button>
+          <Button 
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg"
+          >
             Schedule Demo
-          </button>
+          </Button>
         </div>
       </div>
     </section>

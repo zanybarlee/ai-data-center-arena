@@ -1,9 +1,12 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
+import { useGetStartedContext } from '@/App';
+import { Button } from '@/components/ui/button';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const { openGetStarted } = useGetStartedContext();
   
   useEffect(() => {
     setIsVisible(true);
@@ -63,12 +66,20 @@ export function Hero() {
             "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           )}>
-            <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg">
+            <Button 
+              size="lg"
+              className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
+              onClick={openGetStarted}
+            >
               Explore Agents
-            </button>
-            <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg">
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg"
+            >
               Testing Sandbox
-            </button>
+            </Button>
           </div>
         </div>
         

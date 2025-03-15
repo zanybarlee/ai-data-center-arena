@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
 import { Store, TestTube, Upload, FileText } from 'lucide-react';
+import { useGetStartedContext } from '@/App';
+import { Button } from '@/components/ui/button';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openGetStarted } = useGetStartedContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,9 +57,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <button className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-primary text-white text-sm font-medium transition-all hover:bg-primary/90 hover:shadow-md">
+          <Button 
+            className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-primary text-white text-sm font-medium transition-all hover:bg-primary/90 hover:shadow-md"
+            onClick={openGetStarted}
+          >
             Get Started
-          </button>
+          </Button>
           
           <button 
             className="md:hidden p-2"
@@ -126,9 +132,15 @@ export function Header() {
             </a>
           ))}
           
-          <button className="mt-4 flex items-center justify-center h-12 px-8 rounded-full bg-primary text-white text-base font-medium transition-all hover:bg-primary/90 animate-slide-up opacity-0">
+          <Button 
+            className="mt-4 flex items-center justify-center h-12 px-8 rounded-full bg-primary text-white text-base font-medium transition-all hover:bg-primary/90 animate-slide-up opacity-0"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              openGetStarted();
+            }}
+          >
             Get Started
-          </button>
+          </Button>
         </nav>
       </div>
     </header>
