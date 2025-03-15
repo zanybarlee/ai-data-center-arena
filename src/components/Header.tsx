@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
-import { Store, TestTube, Upload, FileText, Calendar, BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, ChevronDown } from 'lucide-react';
+import { Store, TestTube, Upload, FileText, Calendar, BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake, ChevronDown, Bot } from 'lucide-react';
 import { useGetStartedContext } from '@/App';
 import { useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,7 @@ import {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showAkiraFrame, setShowAkiraFrame] = useState(false);
   const { openGetStarted } = useGetStartedContext();
   const { openScheduleDemo } = useScheduleDemoContext();
 
@@ -29,6 +30,11 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleAkiraClick = () => {
+    setShowAkiraFrame(true);
+    window.open('http://localhost:9999/', 'akira', 'width=800,height=600');
+  };
 
   // Navigation items with icons
   const mainNavItems = [
@@ -154,6 +160,15 @@ export function Header() {
         </NavigationMenu>
 
         <div className="flex items-center space-x-4">
+          <Button 
+            variant="outline"
+            className="hidden md:flex items-center justify-center h-10 px-6 rounded-full text-sm font-medium transition-all"
+            onClick={handleAkiraClick}
+          >
+            <Bot className="w-4 h-4 mr-2" />
+            Call Akira Generative
+          </Button>
+          
           <Button 
             variant="outline"
             className="hidden md:flex items-center justify-center h-10 px-6 rounded-full text-sm font-medium transition-all"
