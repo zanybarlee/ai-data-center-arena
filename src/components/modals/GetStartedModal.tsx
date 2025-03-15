@@ -31,6 +31,7 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
       setEmail("");
       setName("");
     }
+    console.log("GetStartedModal useEffect - open state changed to:", open);
   }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {

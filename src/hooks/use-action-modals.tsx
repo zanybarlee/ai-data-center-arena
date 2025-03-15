@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import GetStartedModal from "@/components/modals/GetStartedModal";
 import DeployNowModal from "@/components/modals/DeployNowModal";
 import ScheduleDemoModal from "@/components/modals/ScheduleDemoModal";
@@ -14,7 +14,6 @@ export function useActionModals() {
   const openGetStarted = useCallback(() => {
     console.log("Opening Get Started modal");
     setIsGetStartedOpen(true);
-    console.log("Modal state after setting:", isGetStartedOpen); // This will still show false due to state update timing
   }, []);
 
   const openDeployNow = useCallback((name?: string) => {
@@ -27,8 +26,13 @@ export function useActionModals() {
     setIsScheduleDemoOpen(true);
   }, []);
 
+  // For debugging: log state changes
+  useEffect(() => {
+    console.log("Get Started modal state updated:", isGetStartedOpen);
+  }, [isGetStartedOpen]);
+
   // Render all the modals
-  const ActionModals = () => {
+  const ActionModals = useCallback(() => {
     console.log("ActionModals rendered, isGetStartedOpen:", isGetStartedOpen);
     return (
       <>
@@ -48,7 +52,7 @@ export function useActionModals() {
         />
       </>
     );
-  };
+  }, [isGetStartedOpen, isDeployNowOpen, isScheduleDemoOpen, productName]);
 
   return {
     openGetStarted,

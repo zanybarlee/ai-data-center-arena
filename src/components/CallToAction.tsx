@@ -7,6 +7,17 @@ import { useActionModals } from '@/hooks/use-action-modals';
 const CallToAction = () => {
   const { openGetStarted, openScheduleDemo, isGetStartedOpen } = useActionModals();
 
+  const handleGetStarted = () => {
+    console.log("CallToAction: Get Started button clicked");
+    console.log("Current modal state before click:", isGetStartedOpen);
+    openGetStarted();
+  };
+
+  const handleScheduleDemo = () => {
+    console.log("CallToAction: Schedule Demo button clicked");
+    openScheduleDemo();
+  };
+
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-secondary to-background">
       <div className="container mx-auto max-w-4xl text-center">
@@ -20,11 +31,7 @@ const CallToAction = () => {
           <Button 
             size="lg" 
             className="w-full sm:w-auto rounded-full"
-            onClick={() => {
-              console.log("CallToAction: Get Started button clicked");
-              console.log("Current modal state before click:", isGetStartedOpen);
-              openGetStarted();
-            }}
+            onClick={handleGetStarted}
           >
             <Rocket className="mr-2 h-5 w-5" />
             Get Started
@@ -33,10 +40,7 @@ const CallToAction = () => {
             size="lg" 
             variant="outline" 
             className="w-full sm:w-auto rounded-full"
-            onClick={() => {
-              console.log("CallToAction: Schedule Demo button clicked");
-              openScheduleDemo();
-            }}
+            onClick={handleScheduleDemo}
           >
             <Calendar className="mr-2 h-5 w-5" />
             Schedule Demo

@@ -19,6 +19,11 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleGetStarted = () => {
+    console.log("Header: Get Started button clicked");
+    openGetStarted();
+  };
+
   // Navigation items with icons
   const navItems = [
     { title: 'Agent Store', href: '/#agent-store', icon: Store },
@@ -58,10 +63,7 @@ export function Header() {
         <div className="flex items-center space-x-4">
           <button 
             className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-primary text-white text-sm font-medium transition-all hover:bg-primary/90 hover:shadow-md"
-            onClick={() => {
-              console.log("Header: Get Started button clicked");
-              openGetStarted();
-            }}
+            onClick={handleGetStarted}
           >
             <Rocket className="mr-2 h-4 w-4" />
             Get Started
