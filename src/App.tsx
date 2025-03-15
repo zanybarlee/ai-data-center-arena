@@ -29,6 +29,7 @@ import ApiReference from "./pages/resources/ApiReference";
 import CaseStudies from "./pages/resources/CaseStudies";
 import KnowledgeBase from "./pages/resources/KnowledgeBase";
 import Tutorials from "./pages/resources/Tutorials";
+import DesignBuildAgents from "./pages/resources/DesignBuildAgents";
 
 // Company pages
 import About from "./pages/company/About";
@@ -145,6 +146,7 @@ const App = () => {
                     <Route path="/resources/case-studies" element={<CaseStudies />} />
                     <Route path="/resources/knowledge-base" element={<KnowledgeBase />} />
                     <Route path="/resources/tutorials" element={<Tutorials />} />
+                    <Route path="/resources/design-build-agents" element={<DesignBuildAgents />} />
                     
                     {/* Company Routes */}
                     <Route path="/company/about" element={<About />} />
