@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
-import { useGetStartedContext, useSandboxContext } from '@/App';
+import { useGetStartedContext, useSandboxContext, useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
 import { scrollToElement } from '@/lib/utils';
+import { Calendar } from 'lucide-react';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const { openGetStarted } = useGetStartedContext();
   const { openSandbox } = useSandboxContext();
+  const { openScheduleDemo } = useScheduleDemoContext();
   
   useEffect(() => {
     setIsVisible(true);
@@ -25,6 +27,11 @@ export function Hero() {
     
     // Option 2: Open the sandbox modal
     // openSandbox();
+  };
+
+  const handleScheduleDemo = () => {
+    console.log("Schedule Demo button clicked");
+    openScheduleDemo();
   };
 
   return (
@@ -95,6 +102,15 @@ export function Hero() {
               onClick={handleTestingSandbox}
             >
               Testing Sandbox
+            </Button>
+            <Button
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto h-14 px-8 rounded-full font-medium text-lg transition-all hover:shadow-lg flex items-center gap-2"
+              onClick={handleScheduleDemo}
+            >
+              <Calendar className="w-5 h-5" />
+              Schedule Demo
             </Button>
           </div>
         </div>

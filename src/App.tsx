@@ -7,6 +7,7 @@ import { createContext, useContext } from "react";
 import { useGetStarted } from "./hooks/useGetStarted";
 import { useSandbox } from "./hooks/useSandbox";
 import { useDeployment } from "./hooks/useDeployment";
+import { useScheduleDemo } from "./hooks/useScheduleDemo";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ThreatShieldAI from "./pages/ThreatShieldAI";
@@ -19,6 +20,7 @@ import WorkloadBalancer from "./pages/WorkloadBalancer";
 import GetStartedForm from "./components/GetStartedForm";
 import SandboxModal from "./components/SandboxModal";
 import DeploymentModal from "./components/DeploymentModal";
+import ScheduleDemoModal from "./components/ScheduleDemoModal";
 
 const queryClient = new QueryClient();
 
@@ -58,16 +60,30 @@ export const useDeploymentContext = () => {
   return context;
 };
 
+// Create context for Schedule Demo functionality
+type ScheduleDemoContextType = ReturnType<typeof useScheduleDemo>;
+export const ScheduleDemoContext = createContext<ScheduleDemoContextType | undefined>(undefined);
+
+export const useScheduleDemoContext = () => {
+  const context = useContext(ScheduleDemoContext);
+  if (context === undefined) {
+    throw new Error("useScheduleDemoContext must be used within a ScheduleDemoProvider");
+  }
+  return context;
+};
+
 const App = () => {
   const getStartedState = useGetStarted();
   const sandboxState = useSandbox();
   const deploymentState = useDeployment();
+  const scheduleDemoState = useScheduleDemo();
   
   // Add debugging log
   console.log("App rendering with states:", { 
     getStarted: { isOpen: getStartedState.isGetStartedOpen },
     sandbox: { isOpen: sandboxState.isSandboxOpen },
-    deployment: { isOpen: deploymentState.isDeploymentOpen }
+    deployment: { isOpen: deploymentState.isDeploymentOpen },
+    scheduleDemo: { isOpen: scheduleDemoState.isScheduleDemoOpen }
   });
   
   return (
@@ -76,34 +92,40 @@ const App = () => {
         <GetStartedContext.Provider value={getStartedState}>
           <SandboxContext.Provider value={sandboxState}>
             <DeploymentContext.Provider value={deploymentState}>
-              <Toaster />
-              <Sonner />
-              <GetStartedForm 
-                isOpen={getStartedState.isGetStartedOpen} 
-                onClose={getStartedState.closeGetStarted} 
-              />
-              <SandboxModal
-                isOpen={sandboxState.isSandboxOpen}
-                onClose={sandboxState.closeSandbox}
-              />
-              <DeploymentModal
-                isOpen={deploymentState.isDeploymentOpen}
-                onClose={deploymentState.closeDeployment}
-              />
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/products/threatshield-ai" element={<ThreatShieldAI />} />
-                  <Route path="/products/failurepredictor-pro" element={<FailurePredictorPro />} />
-                  <Route path="/products/serverguard-ai" element={<ServerGuardAI />} />
-                  <Route path="/products/networkhealth-monitor" element={<NetworkHealthMonitor />} />
-                  <Route path="/products/powerflow-optimizer" element={<PowerFlowOptimizer />} />
-                  <Route path="/products/coolingsmart-ai" element={<CoolingSmart />} />
-                  <Route path="/products/workloadbalancer" element={<WorkloadBalancer />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
+              <ScheduleDemoContext.Provider value={scheduleDemoState}>
+                <Toaster />
+                <Sonner />
+                <GetStartedForm 
+                  isOpen={getStartedState.isGetStartedOpen} 
+                  onClose={getStartedState.closeGetStarted} 
+                />
+                <SandboxModal
+                  isOpen={sandboxState.isSandboxOpen}
+                  onClose={sandboxState.closeSandbox}
+                />
+                <DeploymentModal
+                  isOpen={deploymentState.isDeploymentOpen}
+                  onClose={deploymentState.closeDeployment}
+                />
+                <ScheduleDemoModal
+                  isOpen={scheduleDemoState.isScheduleDemoOpen}
+                  onClose={scheduleDemoState.closeScheduleDemo}
+                />
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/products/threatshield-ai" element={<ThreatShieldAI />} />
+                    <Route path="/products/failurepredictor-pro" element={<FailurePredictorPro />} />
+                    <Route path="/products/serverguard-ai" element={<ServerGuardAI />} />
+                    <Route path="/products/networkhealth-monitor" element={<NetworkHealthMonitor />} />
+                    <Route path="/products/powerflow-optimizer" element={<PowerFlowOptimizer />} />
+                    <Route path="/products/coolingsmart-ai" element={<CoolingSmart />} />
+                    <Route path="/products/workloadbalancer" element={<WorkloadBalancer />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </ScheduleDemoContext.Provider>
             </DeploymentContext.Provider>
           </SandboxContext.Provider>
         </GetStartedContext.Provider>

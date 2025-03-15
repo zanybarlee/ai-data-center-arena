@@ -1,13 +1,20 @@
 import React from 'react';
-import { useGetStartedContext } from '@/App';
+import { useGetStartedContext, useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
+import { Calendar } from 'lucide-react';
 
 const CallToAction = () => {
   const { openGetStarted } = useGetStartedContext();
+  const { openScheduleDemo } = useScheduleDemoContext();
 
   const handleGetStarted = () => {
     console.log("Get Started button clicked");
     openGetStarted();
+  };
+
+  const handleScheduleDemo = () => {
+    console.log("Schedule Demo button clicked");
+    openScheduleDemo();
   };
 
   return (
@@ -30,8 +37,10 @@ const CallToAction = () => {
           <Button 
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg"
+            className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg flex items-center gap-2"
+            onClick={handleScheduleDemo}
           >
+            <Calendar className="w-5 h-5" />
             Schedule Demo
           </Button>
         </div>

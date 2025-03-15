@@ -1,15 +1,16 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
-import { Store, TestTube, Upload, FileText } from 'lucide-react';
+import { Store, TestTube, Upload, FileText, Calendar } from 'lucide-react';
 import { useGetStartedContext } from '@/App';
+import { useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { openGetStarted } = useGetStartedContext();
+  const { openScheduleDemo } = useScheduleDemoContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +58,15 @@ export function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
+          <Button 
+            variant="outline"
+            className="hidden md:flex items-center justify-center h-10 px-6 rounded-full text-sm font-medium transition-all"
+            onClick={openScheduleDemo}
+          >
+            <Calendar className="w-4 h-4 mr-2" />
+            Schedule Demo
+          </Button>
+          
           <Button 
             className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-primary text-white text-sm font-medium transition-all hover:bg-primary/90 hover:shadow-md"
             onClick={openGetStarted}
@@ -131,6 +141,18 @@ export function Header() {
               <span>{item.title}</span>
             </a>
           ))}
+          
+          <Button 
+            variant="outline"
+            className="mt-4 flex items-center justify-center h-12 px-8 rounded-full text-base font-medium transition-all animate-slide-up opacity-0"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              openScheduleDemo();
+            }}
+          >
+            <Calendar className="w-5 h-5 mr-2" />
+            Schedule Demo
+          </Button>
           
           <Button 
             className="mt-4 flex items-center justify-center h-12 px-8 rounded-full bg-primary text-white text-base font-medium transition-all hover:bg-primary/90 animate-slide-up opacity-0"
