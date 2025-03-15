@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
@@ -105,7 +106,7 @@ export function Header() {
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img 
-              src="https://www.akira-ge.ai/lovable-uploads/e5e5ed58-e23a-4e30-b507-21ad648e4db5.png" 
+              src="/lovable-uploads/bb2cfa8c-c134-4d11-a895-7bc15dde2b1e.png" 
               alt="Akira Logo" 
               className="h-6 w-auto dark:invert" 
             />
@@ -274,7 +275,7 @@ export function Header() {
         
         <div className="mb-8">
           <img 
-            src="https://www.akira-ge.ai/lovable-uploads/e5e5ed58-e23a-4e30-b507-21ad648e4db5.png" 
+            src="/lovable-uploads/bb2cfa8c-c134-4d11-a895-7bc15dde2b1e.png" 
             alt="Akira Logo" 
             className="h-8 w-auto dark:invert" 
           />

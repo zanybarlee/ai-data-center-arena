@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center">
-              <img src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" alt="Akira Logo" className="h-8" />
+              <img src="/lovable-uploads/bb2cfa8c-c134-4d11-a895-7bc15dde2b1e.png" alt="Akira Logo" className="h-8" />
             </div>
             <p className="mt-4 text-sm text-foreground/70 max-w-xs">
               The premier marketplace for certified AI agents specialized in data center optimization and management.

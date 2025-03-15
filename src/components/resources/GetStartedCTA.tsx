@@ -57,7 +57,7 @@ const GetStartedCTA = () => {
           <DialogHeader className="p-6 pb-0">
             <DialogTitle className="flex items-center gap-2">
               <img 
-                src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" 
+                src="/lovable-uploads/bb2cfa8c-c134-4d11-a895-7bc15dde2b1e.png" 
                 alt="Akira Logo" 
                 className="h-6" 
               />
