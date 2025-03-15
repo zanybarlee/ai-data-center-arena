@@ -49,9 +49,9 @@ const ApiReference = () => {
             </p>
             
             <pre><code>GET /agents - List all available agents
-GET /agents/{agent_id} - Get details of a specific agent
-POST /agents/{agent_id}/deploy - Deploy an agent to your environment
-DELETE /agents/{agent_id} - Remove an agent from your environment</code></pre>
+GET /agents/{"agent_id"} - Get details of a specific agent
+POST /agents/{"agent_id"}/deploy - Deploy an agent to your environment
+DELETE /agents/{"agent_id"} - Remove an agent from your environment</code></pre>
             
             <h3>Sandbox</h3>
             <p>
@@ -59,17 +59,17 @@ DELETE /agents/{agent_id} - Remove an agent from your environment</code></pre>
             </p>
             
             <pre><code>POST /sandbox/create - Create a new sandbox environment
-GET /sandbox/{sandbox_id} - Get details of a sandbox environment
-POST /sandbox/{sandbox_id}/agents/{agent_id} - Add an agent to a sandbox
-DELETE /sandbox/{sandbox_id} - Delete a sandbox environment</code></pre>
+GET /sandbox/{"sandbox_id"} - Get details of a sandbox environment
+POST /sandbox/{"sandbox_id"}/agents/{"agent_id"} - Add an agent to a sandbox
+DELETE /sandbox/{"sandbox_id"} - Delete a sandbox environment</code></pre>
             
             <h3>Metrics</h3>
             <p>
               Endpoints for retrieving performance metrics.
             </p>
             
-            <pre><code>GET /metrics/agents/{agent_id} - Get metrics for a specific agent
-GET /metrics/environments/{env_id} - Get metrics for a specific environment</code></pre>
+            <pre><code>GET /metrics/agents/{"agent_id"} - Get metrics for a specific agent
+GET /metrics/environments/{"env_id"} - Get metrics for a specific environment</code></pre>
             
             <p>
               For detailed information about request parameters, response formats, and examples, please refer to the specific endpoint documentation.
