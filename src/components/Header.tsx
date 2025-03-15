@@ -6,6 +6,7 @@ import { useGetStartedContext } from '@/App';
 import { useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ export function Header() {
   const {
     openScheduleDemo
   } = useScheduleDemoContext();
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -86,10 +88,16 @@ export function Header() {
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-10 py-4", isScrolled ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-subtle" : "bg-transparent")}>
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">Akira</Link>
-          <div className="hidden md:block ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
-            BETA
-          </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" 
+              alt="Akira Logo" 
+              className="h-8" 
+            />
+            <div className="hidden md:block ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
+              BETA
+            </div>
+          </Link>
         </div>
 
         <nav className="hidden md:flex items-center space-x-4">
@@ -183,6 +191,17 @@ export function Header() {
             <path d="m6 6 12 12" />
           </svg>
         </button>
+        
+        <div className="mb-8">
+          <img 
+            src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" 
+            alt="Akira Logo" 
+            className="h-10" 
+          />
+          <div className="mt-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium text-center">
+            BETA
+          </div>
+        </div>
         
         <nav className="flex flex-col items-center space-y-6 w-full px-6">
           {/* Main Navigation Items */}

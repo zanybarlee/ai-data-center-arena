@@ -11,9 +11,11 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center">
-              <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">
-                MCP
-              </div>
+              <img 
+                src="/lovable-uploads/e8c71c07-95c6-4422-b1ef-0d6918430fb5.png" 
+                alt="Akira Logo" 
+                className="h-8" 
+              />
               <div className="ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
                 BETA
               </div>
@@ -124,7 +126,7 @@ export function Footer() {
         
         <div className="mt-16 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-foreground/60">
-            &copy; {currentYear} MCP AI Agents Marketplace. All rights reserved.
+            &copy; {currentYear} Akira AI Agents Marketplace. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 flex items-center space-x-6">
             {['Terms', 'Privacy', 'Cookies'].map((item) => (
