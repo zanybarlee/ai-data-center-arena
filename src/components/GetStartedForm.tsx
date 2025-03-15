@@ -68,8 +68,13 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="right" className="sm:max-w-md overflow-y-auto">
+    <Sheet open={isOpen} onOpenChange={onClose} modal={true}>
+      <SheetContent 
+        side="right" 
+        className="sm:max-w-md overflow-y-auto"
+        onPointerDownOutside={(e) => e.preventDefault()} 
+        onEscapeKeyDown={(e) => e.preventDefault()}
+      >
         <SheetHeader className="mb-4">
           <SheetTitle>Get Started with MCP</SheetTitle>
           <SheetDescription>
