@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -9,6 +8,7 @@ import TestingSandbox from '@/components/TestingSandbox';
 import DeploymentSection from '@/components/DeploymentSection';
 import DocumentationSection from '@/components/DocumentationSection';
 import CallToAction from '@/components/CallToAction';
+import { scrollToElement } from '@/lib/utils';
 
 // Mock data for agent cards
 const predictiveMaintenanceAgents = [
@@ -123,6 +123,14 @@ const Index = () => {
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
+    
+    // Check for hash in URL and scroll to that section
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      setTimeout(() => {
+        scrollToElement(id);
+      }, 100);
+    }
   }, []);
 
   return (
@@ -155,9 +163,18 @@ const Index = () => {
           />
         </div>
         
-        <TestingSandbox />
-        <DeploymentSection />
-        <DocumentationSection />
+        <div id="testing-sandbox">
+          <TestingSandbox />
+        </div>
+        
+        <div id="deployment">
+          <DeploymentSection />
+        </div>
+        
+        <div id="documentation">
+          <DocumentationSection />
+        </div>
+        
         <CallToAction />
       </main>
       

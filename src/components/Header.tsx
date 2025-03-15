@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
+import { Link } from 'react-router-dom';
+import { Store, TestTube, Upload, FileText } from 'lucide-react';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +17,14 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Navigation items with icons
+  const navItems = [
+    { title: 'Agent Store', href: '/#agent-store', icon: Store },
+    { title: 'Testing Sandbox', href: '/#testing-sandbox', icon: TestTube },
+    { title: 'Deployment', href: '/#deployment', icon: Upload },
+    { title: 'Documentation', href: '/#documentation', icon: FileText }
+  ];
+
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-10 py-4",
@@ -22,22 +32,23 @@ export function Header() {
     )}>
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">
+          <Link to="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">
             MCP
-          </div>
+          </Link>
           <div className="hidden md:block ml-1 px-2 py-0.5 bg-primary/10 rounded text-primary text-xs font-medium">
             BETA
           </div>
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          {['Agent Store', 'Testing Sandbox', 'Deployment', 'Documentation'].map((item) => (
+          {navItems.map((item) => (
             <a 
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+              key={item.title}
+              href={item.href}
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-2"
             >
-              {item}
+              <item.icon className="w-4 h-4" />
+              <span>{item.title}</span>
             </a>
           ))}
         </nav>
@@ -99,18 +110,19 @@ export function Header() {
         </button>
         
         <nav className="flex flex-col items-center space-y-6">
-          {['Agent Store', 'Testing Sandbox', 'Deployment', 'Documentation'].map((item, index) => (
+          {navItems.map((item, index) => (
             <a 
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+              key={item.title}
+              href={item.href}
               className={cn(
-                "text-xl font-medium text-foreground/80 hover:text-primary transition-colors",
+                "text-xl font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-2",
                 `animate-slide-down opacity-0`,
                 isMobileMenuOpen && `animate-delay-${index * 100}`
               )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item}
+              <item.icon className="w-5 h-5" />
+              <span>{item.title}</span>
             </a>
           ))}
           
