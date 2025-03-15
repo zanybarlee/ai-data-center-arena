@@ -16,6 +16,11 @@ export function Hero() {
     document.getElementById('testing-sandbox')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleExploreAgents = () => {
+    console.log("Hero: Explore Agents button clicked");
+    openGetStarted();
+  };
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20">
       {/* Decorative elements */}
@@ -72,10 +77,7 @@ export function Hero() {
           )}>
             <button 
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg flex items-center justify-center gap-2"
-              onClick={() => {
-                console.log("Hero: Explore Agents button clicked");
-                openGetStarted();
-              }}
+              onClick={handleExploreAgents}
             >
               <Rocket className="w-5 h-5" />
               Explore Agents

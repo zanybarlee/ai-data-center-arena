@@ -8,8 +8,7 @@ const CallToAction = () => {
   const { openGetStarted, openScheduleDemo, isGetStartedOpen } = useActionModals();
 
   const handleGetStarted = () => {
-    console.log("CallToAction: Get Started button clicked");
-    console.log("Current modal state before click:", isGetStartedOpen);
+    console.log("CallToAction: Get Started button clicked, current state:", isGetStartedOpen);
     openGetStarted();
   };
 

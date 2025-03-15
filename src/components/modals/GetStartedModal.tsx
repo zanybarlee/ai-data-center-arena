@@ -1,13 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogDescription, 
-  DialogFooter 
-} from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,11 +8,11 @@ import { Rocket } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface GetStartedModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
+export function GetStartedModal({ isOpen, onClose }: GetStartedModalProps) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,12 +20,12 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
 
   // Reset form when modal closes
   useEffect(() => {
-    if (!open) {
+    console.log("GetStartedModal rendered, isOpen:", isOpen);
+    if (!isOpen) {
       setEmail("");
       setName("");
     }
-    console.log("GetStartedModal useEffect - open state changed to:", open);
-  }, [open]);
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,23 +50,23 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
     });
     
     setIsSubmitting(false);
-    onOpenChange(false);
+    onClose();
   };
 
-  console.log("GetStartedModal rendered, open state:", open);
-
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl">
+    <Sheet open={isOpen} onOpenChange={(open) => {
+      if (!open) onClose();
+    }}>
+      <SheetContent className="sm:max-w-md">
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2 text-2xl">
             <Rocket className="h-5 w-5 text-primary" />
             Get Started with MCP AI Agents
-          </DialogTitle>
-          <DialogDescription>
+          </SheetTitle>
+          <SheetDescription>
             Fill out the form below to get more information about our AI agents.
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="name">Your Name</Label>
@@ -97,14 +90,14 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
           <div className="pt-4 text-sm text-muted-foreground">
             By submitting this form, you agree to our Terms of Service and Privacy Policy.
           </div>
-          <DialogFooter className="sm:justify-start">
+          <SheetFooter className="sm:justify-start">
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? "Processing..." : "Get Started Now"}
             </Button>
-          </DialogFooter>
+          </SheetFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 
