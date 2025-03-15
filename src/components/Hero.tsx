@@ -72,7 +72,7 @@ export function Hero() {
           )}>
             <button 
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg flex items-center justify-center gap-2"
-              onClick={openGetStarted}
+              onClick={() => openGetStarted()}
             >
               <Rocket className="w-5 h-5" />
               Explore Agents
@@ -116,8 +116,6 @@ export function Hero() {
           <div className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-[bounce_1.5s_infinite]"></div>
         </div>
       </div>
-      
-      <ActionModals />
     </section>
   );
 }

@@ -36,7 +36,6 @@ const CallToAction = () => {
           </Button>
         </div>
       </div>
-      <ActionModals />
     </section>
   );
 };
