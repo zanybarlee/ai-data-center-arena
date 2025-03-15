@@ -5,7 +5,7 @@ import { Rocket, Calendar } from 'lucide-react';
 import { useActionModals } from '@/hooks/use-action-modals';
 
 const CallToAction = () => {
-  const { openGetStarted, openScheduleDemo, ActionModals } = useActionModals();
+  const { openGetStarted, openScheduleDemo } = useActionModals();
 
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-secondary to-background">

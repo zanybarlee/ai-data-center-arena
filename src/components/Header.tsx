@@ -8,7 +8,7 @@ import { useActionModals } from '@/hooks/use-action-modals';
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { openGetStarted, ActionModals } = useActionModals();
+  const { openGetStarted } = useActionModals();
 
   useEffect(() => {
     const handleScroll = () => {

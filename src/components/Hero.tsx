@@ -6,7 +6,7 @@ import { Rocket, TestTube } from 'lucide-react';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
-  const { openGetStarted, ActionModals } = useActionModals();
+  const { openGetStarted } = useActionModals();
   
   useEffect(() => {
     setIsVisible(true);

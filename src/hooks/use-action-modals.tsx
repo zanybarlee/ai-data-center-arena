@@ -11,6 +11,7 @@ export function useActionModals() {
   const [productName, setProductName] = useState<string | undefined>(undefined);
 
   const openGetStarted = () => {
+    console.log("Opening Get Started modal");
     setIsGetStartedOpen(true);
   };
 
