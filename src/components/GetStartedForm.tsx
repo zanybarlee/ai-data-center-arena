@@ -67,8 +67,15 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose }) => {
     }, 1000);
   };
 
+  // Custom close function that only closes when explicitly triggered
+  const handleSheetChange = (open: boolean) => {
+    if (!open && !isSubmitting) {
+      onClose();
+    }
+  };
+
   return (
-    <Sheet open={isOpen} onOpenChange={onClose} modal={true}>
+    <Sheet open={isOpen} onOpenChange={handleSheetChange} modal={true}>
       <SheetContent 
         side="right" 
         className="sm:max-w-md overflow-y-auto"
