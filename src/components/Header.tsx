@@ -1,10 +1,19 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
-import { Store, TestTube, Upload, FileText, Calendar } from 'lucide-react';
+import { Store, TestTube, Upload, FileText, Calendar, BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake } from 'lucide-react';
 import { useGetStartedContext } from '@/App';
 import { useScheduleDemoContext } from '@/App';
 import { Button } from '@/components/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,11 +31,28 @@ export function Header() {
   }, []);
 
   // Navigation items with icons
-  const navItems = [
+  const mainNavItems = [
     { title: 'Agent Store', href: '/#agent-store', icon: Store },
     { title: 'Testing Sandbox', href: '/#testing-sandbox', icon: TestTube },
     { title: 'Deployment', href: '/#deployment', icon: Upload },
-    { title: 'Documentation', href: '/#documentation', icon: FileText }
+  ];
+  
+  // Resources dropdown items
+  const resourcesItems = [
+    { title: 'Documentation', href: '/resources/documentation', icon: BookOpen },
+    { title: 'API Reference', href: '/resources/api-reference', icon: FileText },
+    { title: 'Case Studies', href: '/resources/case-studies', icon: BookText },
+    { title: 'Knowledge Base', href: '/resources/knowledge-base', icon: BookText },
+    { title: 'Tutorials', href: '/resources/tutorials', icon: GraduationCap },
+  ];
+  
+  // Company dropdown items
+  const companyItems = [
+    { title: 'About Us', href: '/company/about', icon: Building },
+    { title: 'Blog', href: '/company/blog', icon: Newspaper },
+    { title: 'Careers', href: '/company/careers', icon: BriefcaseBusiness },
+    { title: 'Contact Us', href: '/company/contact', icon: Mail },
+    { title: 'Partner Program', href: '/company/partners', icon: Handshake },
   ];
 
   return (
@@ -44,17 +70,82 @@ export function Header() {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <a 
-              key={item.title}
-              href={item.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-2"
-            >
-              <item.icon className="w-4 h-4" />
-              <span>{item.title}</span>
-            </a>
-          ))}
+        <nav className="hidden md:flex items-center space-x-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {mainNavItems.map((item) => (
+                <NavigationMenuItem key={item.title}>
+                  <NavigationMenuLink asChild>
+                    <a 
+                      href={item.href}
+                      className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-2 px-3 py-2"
+                    >
+                      <item.icon className="w-4 h-4" />
+                      <span>{item.title}</span>
+                    </a>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+              
+              {/* Resources Dropdown */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4" />
+                    <span>Resources</span>
+                  </div>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[220px] gap-2 p-4">
+                    {resourcesItems.map((item) => (
+                      <li key={item.title}>
+                        <NavigationMenuLink asChild>
+                          <a
+                            href={item.href}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="flex items-center gap-2">
+                              <item.icon className="w-4 h-4" />
+                              <span className="text-sm font-medium">{item.title}</span>
+                            </div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              
+              {/* Company Dropdown */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    <Building className="w-4 h-4" />
+                    <span>Company</span>
+                  </div>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[220px] gap-2 p-4">
+                    {companyItems.map((item) => (
+                      <li key={item.title}>
+                        <NavigationMenuLink asChild>
+                          <a
+                            href={item.href}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="flex items-center gap-2">
+                              <item.icon className="w-4 h-4" />
+                              <span className="text-sm font-medium">{item.title}</span>
+                            </div>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -125,8 +216,9 @@ export function Header() {
           </svg>
         </button>
         
-        <nav className="flex flex-col items-center space-y-6">
-          {navItems.map((item, index) => (
+        <nav className="flex flex-col items-center space-y-6 w-full px-6">
+          {/* Main Navigation Items */}
+          {mainNavItems.map((item, index) => (
             <a 
               key={item.title}
               href={item.href}
@@ -141,6 +233,42 @@ export function Header() {
               <span>{item.title}</span>
             </a>
           ))}
+          
+          {/* Resources Section */}
+          <div className="w-full">
+            <h3 className="text-lg font-semibold mb-3 text-center">Resources</h3>
+            <div className="flex flex-col items-center space-y-3">
+              {resourcesItems.map((item) => (
+                <a 
+                  key={item.title}
+                  href={item.href}
+                  className="text-base text-foreground/80 hover:text-primary transition-colors flex items-center gap-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          {/* Company Section */}
+          <div className="w-full">
+            <h3 className="text-lg font-semibold mb-3 text-center">Company</h3>
+            <div className="flex flex-col items-center space-y-3">
+              {companyItems.map((item) => (
+                <a 
+                  key={item.title}
+                  href={item.href}
+                  className="text-base text-foreground/80 hover:text-primary transition-colors flex items-center gap-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
           
           <Button 
             variant="outline"

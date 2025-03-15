@@ -1,4 +1,6 @@
 
+import { BookOpen, BookText, GraduationCap, Building, Users, Newspaper, BriefcaseBusiness, Mail, Handshake } from 'lucide-react';
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
   
@@ -52,36 +54,70 @@ export function Footer() {
           
           {/* Navigation */}
           <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {[
-              { 
-                title: 'Product', 
-                links: ['Agent Store', 'Certification Engine', 'Testing Sandbox', 'Deployment UI', 'Pricing'] 
-              },
-              { 
-                title: 'Resources', 
-                links: ['Documentation', 'API Reference', 'Case Studies', 'Knowledge Base', 'Tutorials'] 
-              },
-              { 
-                title: 'Company', 
-                links: ['About Us', 'Blog', 'Careers', 'Contact Us', 'Partner Program'] 
-              }
-            ].map((category) => (
-              <div key={category.title}>
-                <h4 className="text-base font-semibold mb-4">{category.title}</h4>
-                <ul className="space-y-2">
-                  {category.links.map((link) => (
-                    <li key={link}>
-                      <a 
-                        href="#" 
-                        className="text-sm text-foreground/70 hover:text-primary transition-colors"
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Product */}
+            <div>
+              <h4 className="text-base font-semibold mb-4">Product</h4>
+              <ul className="space-y-2">
+                {['Agent Store', 'Certification Engine', 'Testing Sandbox', 'Deployment UI', 'Pricing'].map((link) => (
+                  <li key={link}>
+                    <a 
+                      href="#" 
+                      className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Resources */}
+            <div>
+              <h4 className="text-base font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2">
+                {[
+                  { name: 'Documentation', href: '/resources/documentation', icon: BookOpen },
+                  { name: 'API Reference', href: '/resources/api-reference', icon: FileText },
+                  { name: 'Case Studies', href: '/resources/case-studies', icon: BookText },
+                  { name: 'Knowledge Base', href: '/resources/knowledge-base', icon: BookText },
+                  { name: 'Tutorials', href: '/resources/tutorials', icon: GraduationCap },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a 
+                      href={link.href} 
+                      className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-1"
+                    >
+                      <link.icon className="w-3 h-3" />
+                      <span>{link.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Company */}
+            <div>
+              <h4 className="text-base font-semibold mb-4">Company</h4>
+              <ul className="space-y-2">
+                {[
+                  { name: 'About Us', href: '/company/about', icon: Building },
+                  { name: 'Blog', href: '/company/blog', icon: Newspaper },
+                  { name: 'Careers', href: '/company/careers', icon: BriefcaseBusiness },
+                  { name: 'Contact Us', href: '/company/contact', icon: Mail },
+                  { name: 'Partner Program', href: '/company/partners', icon: Handshake },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a 
+                      href={link.href} 
+                      className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-1"
+                    >
+                      <link.icon className="w-3 h-3" />
+                      <span>{link.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         
