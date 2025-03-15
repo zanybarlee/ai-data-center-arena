@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -54,6 +54,9 @@ export function GetStartedModal({ open, onOpenChange }: GetStartedModalProps) {
             <Rocket className="h-5 w-5 text-primary" />
             Get Started with MCP AI Agents
           </DialogTitle>
+          <DialogDescription>
+            Fill out the form below to get more information about our AI agents.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -64,6 +64,9 @@ export function ScheduleDemoModal({ open, onOpenChange, productName }: ScheduleD
             <CalendarIcon className="h-5 w-5 text-primary" />
             Schedule a Demo {productName ? `of ${productName}` : ""}
           </DialogTitle>
+          <DialogDescription>
+            Select a date and provide your contact information to schedule a personalized demo.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
