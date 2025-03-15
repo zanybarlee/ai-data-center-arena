@@ -211,25 +211,25 @@ const Index = () => {
                   </div>
                   <div className="p-4 h-[calc(100%-32px)] overflow-hidden bg-gradient-to-b from-transparent to-black/5">
                     <div className="font-mono text-xs text-foreground/70 h-full overflow-auto">
-                      <p className="pb-1">> Initializing testing environment...</p>
-                      <p className="pb-1 text-green-500">> Environment ready</p>
-                      <p className="pb-1">> Loading agent: ThreatShield AI v2.4.1</p>
-                      <p className="pb-1 text-green-500">> Agent loaded successfully</p>
-                      <p className="pb-1">> Configuring test parameters...</p>
-                      <p className="pb-1 text-green-500">> Test parameters set</p>
-                      <p className="pb-1">> Starting security simulation...</p>
-                      <p className="pb-1">> Simulating DDoS attack pattern...</p>
-                      <p className="pb-1 text-green-500">> Attack detected in 1.42 seconds</p>
-                      <p className="pb-1 text-green-500">> Mitigation strategy implemented</p>
-                      <p className="pb-1">> Simulating unauthorized access attempt...</p>
-                      <p className="pb-1 text-green-500">> Access blocked, alerts generated</p>
-                      <p className="pb-1">> Testing response to zero-day vulnerabilities...</p>
-                      <p className="pb-1 text-yellow-500">> Partial detection achieved</p>
-                      <p className="pb-1">> Evaluating overall performance...</p>
-                      <p className="pb-1 text-green-500">> Performance score: 94/100</p>
-                      <p className="pb-1">> Generating detailed report...</p>
-                      <p className="pb-1 text-green-500">> Report available for download</p>
-                      <p className="pb-1">> Test completed successfully</p>
+                      <p className="pb-1">{`> Initializing testing environment...`}</p>
+                      <p className="pb-1 text-green-500">{`> Environment ready`}</p>
+                      <p className="pb-1">{`> Loading agent: ThreatShield AI v2.4.1`}</p>
+                      <p className="pb-1 text-green-500">{`> Agent loaded successfully`}</p>
+                      <p className="pb-1">{`> Configuring test parameters...`}</p>
+                      <p className="pb-1 text-green-500">{`> Test parameters set`}</p>
+                      <p className="pb-1">{`> Starting security simulation...`}</p>
+                      <p className="pb-1">{`> Simulating DDoS attack pattern...`}</p>
+                      <p className="pb-1 text-green-500">{`> Attack detected in 1.42 seconds`}</p>
+                      <p className="pb-1 text-green-500">{`> Mitigation strategy implemented`}</p>
+                      <p className="pb-1">{`> Simulating unauthorized access attempt...`}</p>
+                      <p className="pb-1 text-green-500">{`> Access blocked, alerts generated`}</p>
+                      <p className="pb-1">{`> Testing response to zero-day vulnerabilities...`}</p>
+                      <p className="pb-1 text-yellow-500">{`> Partial detection achieved`}</p>
+                      <p className="pb-1">{`> Evaluating overall performance...`}</p>
+                      <p className="pb-1 text-green-500">{`> Performance score: 94/100`}</p>
+                      <p className="pb-1">{`> Generating detailed report...`}</p>
+                      <p className="pb-1 text-green-500">{`> Report available for download`}</p>
+                      <p className="pb-1">{`> Test completed successfully`}</p>
                       <p className="animate-pulse">&nbsp;_</p>
                     </div>
                   </div>
