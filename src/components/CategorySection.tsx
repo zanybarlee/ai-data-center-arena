@@ -2,16 +2,26 @@
 import { useState, useRef, useEffect } from 'react';
 import { AgentCard, AgentCardProps } from './AgentCard';
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog";
 
 interface CategorySectionProps {
   title: string;
   subtitle: string;
   agents: AgentCardProps[];
   className?: string;
+  showAkiraButton?: boolean;
 }
 
-export function CategorySection({ title, subtitle, agents, className }: CategorySectionProps) {
+export function CategorySection({ title, subtitle, agents, className, showAkiraButton = false }: CategorySectionProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isFrameOpen, setIsFrameOpen] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -55,6 +65,25 @@ export function CategorySection({ title, subtitle, agents, className }: Category
           )}>
             {subtitle}
           </p>
+          
+          {showAkiraButton && (
+            <div className={cn(
+              "mt-8 transition-all duration-700 delay-200",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}>
+              <Button 
+                onClick={() => setIsFrameOpen(true)}
+                className="h-12 px-8 bg-primary hover:bg-primary/90"
+                variant="default"
+                size="lg"
+              >
+                <span className="flex items-center">
+                  Call Akira Generative Engineering
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </span>
+              </Button>
+            </div>
+          )}
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -72,6 +101,24 @@ export function CategorySection({ title, subtitle, agents, className }: Category
           ))}
         </div>
       </div>
+      
+      <Dialog open={isFrameOpen} onOpenChange={setIsFrameOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] p-0">
+          <DialogHeader className="p-6 pb-0">
+            <DialogTitle>Akira Generative Engineering</DialogTitle>
+          </DialogHeader>
+          <div className="p-0 h-full">
+            <iframe 
+              src="http://localhost:999" 
+              className="w-full h-[calc(80vh-80px)]"
+              title="Akira Generative Engineering" 
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

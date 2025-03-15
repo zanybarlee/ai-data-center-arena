@@ -10,6 +10,7 @@ const AgentStoreSection = () => {
         subtitle="Intelligent agents that assist in planning, designing, and optimizing data center layouts for maximum efficiency, scalability, and reliability."
         agents={designBuildAgents}
         className="py-24"
+        showAkiraButton={true}
       />
       
       <CategorySection 
