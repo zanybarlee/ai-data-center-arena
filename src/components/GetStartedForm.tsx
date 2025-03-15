@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { toast } from '@/hooks/use-toast';
 
 interface GetStartedFormProps {
@@ -67,27 +67,31 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose }) => {
     }, 1000);
   };
 
-  // Custom close function that only closes when explicitly triggered
-  const handleSheetChange = (open: boolean) => {
-    if (!open && !isSubmitting) {
-      onClose();
-    }
-  };
-
   return (
-    <Sheet open={isOpen} onOpenChange={handleSheetChange} modal={true}>
-      <SheetContent 
-        side="right" 
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open && !isSubmitting) {
+        onClose();
+      }
+    }}>
+      <DialogContent 
         className="sm:max-w-md overflow-y-auto"
-        onPointerDownOutside={(e) => e.preventDefault()} 
-        onEscapeKeyDown={(e) => e.preventDefault()}
+        onPointerDownOutside={(e) => {
+          if (isSubmitting) {
+            e.preventDefault();
+          }
+        }}
+        onEscapeKeyDown={(e) => {
+          if (isSubmitting) {
+            e.preventDefault();
+          }
+        }}
       >
-        <SheetHeader className="mb-4">
-          <SheetTitle>Get Started with MCP</SheetTitle>
-          <SheetDescription>
+        <DialogHeader className="mb-4">
+          <DialogTitle>Get Started with MCP</DialogTitle>
+          <DialogDescription>
             Fill out this form and we'll contact you to help you transform your data center operations.
-          </SheetDescription>
-        </SheetHeader>
+          </DialogDescription>
+        </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
@@ -138,7 +142,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose }) => {
             />
           </div>
           
-          <SheetFooter className="mt-6">
+          <DialogFooter className="mt-6">
             <Button 
               type="submit" 
               className="w-full"
@@ -146,10 +150,10 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose }) => {
             >
               {isSubmitting ? 'Submitting...' : 'Submit Request'}
             </Button>
-          </SheetFooter>
+          </DialogFooter>
         </form>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   );
 };
 
