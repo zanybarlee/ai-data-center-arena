@@ -5,9 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, Shield, Zap, Lock, Server, LineChart, Users, CreditCard, Star } from "lucide-react";
+import { Check, Shield, Zap, Lock, Server, LineChart, Users, CreditCard, Star, Rocket, Calendar, Upload } from "lucide-react";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useActionModals } from '@/hooks/use-action-modals';
 
 export interface ProductDetailProps {
   id: string;
@@ -59,6 +60,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
   testimonials,
   faqs,
 }) => {
+  const { openDeployNow, openScheduleDemo, ActionModals } = useActionModals();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -86,10 +89,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
                   <span className="text-foreground/60">({reviews} reviews)</span>
                 </div>
                 <div className="flex flex-wrap gap-4 mt-8">
-                  <Button size="lg" className="rounded-full">
+                  <Button size="lg" className="rounded-full" onClick={() => openDeployNow(name)}>
+                    <Upload className="mr-2 h-5 w-5" />
                     Deploy Now
                   </Button>
-                  <Button size="lg" variant="outline" className="rounded-full">
+                  <Button size="lg" variant="outline" className="rounded-full" onClick={() => openScheduleDemo(name)}>
+                    <Calendar className="mr-2 h-5 w-5" />
                     Schedule Demo
                   </Button>
                 </div>
@@ -203,6 +208,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
                     <Button 
                       className={`w-full mt-8 ${plan.highlight ? 'bg-primary' : ''}`}
                       variant={plan.highlight ? "default" : "outline"}
+                      onClick={() => openDeployNow(name)}
                     >
                       {plan.cta}
                     </Button>
@@ -296,10 +302,21 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
               Join the hundreds of organizations that trust {name} to enhance their critical infrastructure operations.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="w-full sm:w-auto rounded-full">
+              <Button 
+                size="lg" 
+                className="w-full sm:w-auto rounded-full"
+                onClick={() => openDeployNow(name)}
+              >
+                <Upload className="mr-2 h-5 w-5" />
                 Deploy Now
               </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="w-full sm:w-auto rounded-full"
+                onClick={() => openScheduleDemo(name)}
+              >
+                <Calendar className="mr-2 h-5 w-5" />
                 Schedule Demo
               </Button>
             </div>
@@ -308,6 +325,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
       </main>
       
       <Footer />
+      <ActionModals />
     </div>
   );
 };
