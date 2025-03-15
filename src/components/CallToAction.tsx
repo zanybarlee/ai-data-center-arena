@@ -1,10 +1,14 @@
-
 import React from 'react';
 import { useGetStartedContext } from '@/App';
 import { Button } from '@/components/ui/button';
 
 const CallToAction = () => {
   const { openGetStarted } = useGetStartedContext();
+
+  const handleGetStarted = () => {
+    console.log("Get Started button clicked");
+    openGetStarted();
+  };
 
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-secondary to-background">
@@ -19,7 +23,7 @@ const CallToAction = () => {
           <Button 
             size="lg"
             className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
-            onClick={openGetStarted}
+            onClick={handleGetStarted}
           >
             Get Started
           </Button>

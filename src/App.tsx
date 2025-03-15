@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createContext, useContext } from "react";
 import { useGetStarted } from "./hooks/useGetStarted";
+import { useSandbox } from "./hooks/useSandbox";
+import { useDeployment } from "./hooks/useDeployment";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ThreatShieldAI from "./pages/ThreatShieldAI";
@@ -16,6 +17,8 @@ import PowerFlowOptimizer from "./pages/PowerFlowOptimizer";
 import CoolingSmart from "./pages/CoolingSmart";
 import WorkloadBalancer from "./pages/WorkloadBalancer";
 import GetStartedForm from "./components/GetStartedForm";
+import SandboxModal from "./components/SandboxModal";
+import DeploymentModal from "./components/DeploymentModal";
 
 const queryClient = new QueryClient();
 
@@ -31,33 +34,78 @@ export const useGetStartedContext = () => {
   return context;
 };
 
+// Create context for Sandbox functionality
+type SandboxContextType = ReturnType<typeof useSandbox>;
+export const SandboxContext = createContext<SandboxContextType | undefined>(undefined);
+
+export const useSandboxContext = () => {
+  const context = useContext(SandboxContext);
+  if (context === undefined) {
+    throw new Error("useSandboxContext must be used within a SandboxProvider");
+  }
+  return context;
+};
+
+// Create context for Deployment functionality
+type DeploymentContextType = ReturnType<typeof useDeployment>;
+export const DeploymentContext = createContext<DeploymentContextType | undefined>(undefined);
+
+export const useDeploymentContext = () => {
+  const context = useContext(DeploymentContext);
+  if (context === undefined) {
+    throw new Error("useDeploymentContext must be used within a DeploymentProvider");
+  }
+  return context;
+};
+
 const App = () => {
   const getStartedState = useGetStarted();
+  const sandboxState = useSandbox();
+  const deploymentState = useDeployment();
+  
+  // Add debugging log
+  console.log("App rendering with states:", { 
+    getStarted: { isOpen: getStartedState.isGetStartedOpen },
+    sandbox: { isOpen: sandboxState.isSandboxOpen },
+    deployment: { isOpen: deploymentState.isDeploymentOpen }
+  });
   
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <GetStartedContext.Provider value={getStartedState}>
-          <Toaster />
-          <Sonner />
-          <GetStartedForm 
-            isOpen={getStartedState.isGetStartedOpen} 
-            onClose={getStartedState.closeGetStarted} 
-          />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/products/threatshield-ai" element={<ThreatShieldAI />} />
-              <Route path="/products/failurepredictor-pro" element={<FailurePredictorPro />} />
-              <Route path="/products/serverguard-ai" element={<ServerGuardAI />} />
-              <Route path="/products/networkhealth-monitor" element={<NetworkHealthMonitor />} />
-              <Route path="/products/powerflow-optimizer" element={<PowerFlowOptimizer />} />
-              <Route path="/products/coolingsmart-ai" element={<CoolingSmart />} />
-              <Route path="/products/workloadbalancer" element={<WorkloadBalancer />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          <SandboxContext.Provider value={sandboxState}>
+            <DeploymentContext.Provider value={deploymentState}>
+              <Toaster />
+              <Sonner />
+              <GetStartedForm 
+                isOpen={getStartedState.isGetStartedOpen} 
+                onClose={getStartedState.closeGetStarted} 
+              />
+              <SandboxModal
+                isOpen={sandboxState.isSandboxOpen}
+                onClose={sandboxState.closeSandbox}
+              />
+              <DeploymentModal
+                isOpen={deploymentState.isDeploymentOpen}
+                onClose={deploymentState.closeDeployment}
+              />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/products/threatshield-ai" element={<ThreatShieldAI />} />
+                  <Route path="/products/failurepredictor-pro" element={<FailurePredictorPro />} />
+                  <Route path="/products/serverguard-ai" element={<ServerGuardAI />} />
+                  <Route path="/products/networkhealth-monitor" element={<NetworkHealthMonitor />} />
+                  <Route path="/products/powerflow-optimizer" element={<PowerFlowOptimizer />} />
+                  <Route path="/products/coolingsmart-ai" element={<CoolingSmart />} />
+                  <Route path="/products/workloadbalancer" element={<WorkloadBalancer />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </DeploymentContext.Provider>
+          </SandboxContext.Provider>
         </GetStartedContext.Provider>
       </TooltipProvider>
     </QueryClientProvider>

@@ -1,16 +1,31 @@
-
 import { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
-import { useGetStartedContext } from '@/App';
+import { useGetStartedContext, useSandboxContext } from '@/App';
 import { Button } from '@/components/ui/button';
+import { scrollToElement } from '@/lib/utils';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const { openGetStarted } = useGetStartedContext();
+  const { openSandbox } = useSandboxContext();
   
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleExploreAgents = () => {
+    console.log("Explore Agents button clicked");
+    openGetStarted();
+  };
+
+  const handleTestingSandbox = () => {
+    console.log("Testing Sandbox button clicked");
+    // Option 1: Scroll to the testing sandbox section
+    scrollToElement('testing-sandbox');
+    
+    // Option 2: Open the sandbox modal
+    // openSandbox();
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20">
@@ -69,7 +84,7 @@ export function Hero() {
             <Button 
               size="lg"
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
-              onClick={openGetStarted}
+              onClick={handleExploreAgents}
             >
               Explore Agents
             </Button>
@@ -77,6 +92,7 @@ export function Hero() {
               variant="outline"
               size="lg"
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg"
+              onClick={handleTestingSandbox}
             >
               Testing Sandbox
             </Button>

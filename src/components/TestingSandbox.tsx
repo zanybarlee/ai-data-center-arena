@@ -1,7 +1,14 @@
-
 import React from 'react';
+import { useSandboxContext } from '@/App';
 
 const TestingSandbox = () => {
+  const { openSandbox } = useSandboxContext();
+
+  const handleLaunchSandbox = () => {
+    console.log("Launch Sandbox button clicked");
+    openSandbox();
+  };
+
   return (
     <section id="testing-sandbox" className="py-24 px-6 bg-gradient-to-b from-secondary to-background">
       <div className="container mx-auto max-w-5xl">
@@ -47,7 +54,10 @@ const TestingSandbox = () => {
                   </li>
                 ))}
               </ul>
-              <button className="h-12 px-6 rounded-full bg-primary text-white font-medium transition-all hover:bg-primary/90 hover:shadow-lg">
+              <button 
+                className="h-12 px-6 rounded-full bg-primary text-white font-medium transition-all hover:bg-primary/90 hover:shadow-lg"
+                onClick={handleLaunchSandbox}
+              >
                 Launch Sandbox
               </button>
             </div>

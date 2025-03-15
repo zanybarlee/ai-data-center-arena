@@ -1,7 +1,14 @@
-
 import React from 'react';
+import { useDeploymentContext } from '@/App';
 
 const DeploymentSection = () => {
+  const { openDeployment } = useDeploymentContext();
+
+  const handleDeploymentClick = () => {
+    console.log("Get Started with Deployment button clicked");
+    openDeployment();
+  };
+
   return (
     <section id="deployment" className="py-24 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -59,7 +66,10 @@ const DeploymentSection = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <button className="h-14 px-10 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg">
+          <button 
+            className="h-14 px-10 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
+            onClick={handleDeploymentClick}
+          >
             Get Started with Deployment
           </button>
         </div>
