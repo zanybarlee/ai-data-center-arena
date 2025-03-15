@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,6 +22,20 @@ import GetStartedForm from "./components/GetStartedForm";
 import SandboxModal from "./components/SandboxModal";
 import DeploymentModal from "./components/DeploymentModal";
 import ScheduleDemoModal from "./components/ScheduleDemoModal";
+
+// Resources pages
+import Documentation from "./pages/resources/Documentation";
+import ApiReference from "./pages/resources/ApiReference";
+import CaseStudies from "./pages/resources/CaseStudies";
+import KnowledgeBase from "./pages/resources/KnowledgeBase";
+import Tutorials from "./pages/resources/Tutorials";
+
+// Company pages
+import About from "./pages/company/About";
+import Blog from "./pages/company/Blog";
+import Careers from "./pages/company/Careers";
+import Contact from "./pages/company/Contact";
+import Partners from "./pages/company/Partners";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +129,8 @@ const App = () => {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/" element={<Index />} />
+                    
+                    {/* Product Routes */}
                     <Route path="/products/threatshield-ai" element={<ThreatShieldAI />} />
                     <Route path="/products/failurepredictor-pro" element={<FailurePredictorPro />} />
                     <Route path="/products/serverguard-ai" element={<ServerGuardAI />} />
@@ -121,7 +138,22 @@ const App = () => {
                     <Route path="/products/powerflow-optimizer" element={<PowerFlowOptimizer />} />
                     <Route path="/products/coolingsmart-ai" element={<CoolingSmart />} />
                     <Route path="/products/workloadbalancer" element={<WorkloadBalancer />} />
-                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    
+                    {/* Resources Routes */}
+                    <Route path="/resources/documentation" element={<Documentation />} />
+                    <Route path="/resources/api-reference" element={<ApiReference />} />
+                    <Route path="/resources/case-studies" element={<CaseStudies />} />
+                    <Route path="/resources/knowledge-base" element={<KnowledgeBase />} />
+                    <Route path="/resources/tutorials" element={<Tutorials />} />
+                    
+                    {/* Company Routes */}
+                    <Route path="/company/about" element={<About />} />
+                    <Route path="/company/blog" element={<Blog />} />
+                    <Route path="/company/careers" element={<Careers />} />
+                    <Route path="/company/contact" element={<Contact />} />
+                    <Route path="/company/partners" element={<Partners />} />
+                    
+                    {/* Catch-all for 404 */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </BrowserRouter>
