@@ -7,6 +7,7 @@ import { ExternalLink } from "lucide-react";
 import { 
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog";
@@ -46,6 +47,11 @@ export function CategorySection({ title, subtitle, agents, className, showAkiraB
     };
   }, []);
 
+  const handleOpenAkira = () => {
+    console.log("Opening Akira dialog");
+    setIsFrameOpen(true);
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -72,7 +78,7 @@ export function CategorySection({ title, subtitle, agents, className, showAkiraB
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}>
               <Button 
-                onClick={() => setIsFrameOpen(true)}
+                onClick={handleOpenAkira}
                 className="h-12 px-8 bg-primary hover:bg-primary/90"
                 variant="default"
                 size="lg"
@@ -106,6 +112,9 @@ export function CategorySection({ title, subtitle, agents, className, showAkiraB
         <DialogContent className="max-w-4xl h-[80vh] p-0">
           <DialogHeader className="p-6 pb-0">
             <DialogTitle>Akira Generative Engineering</DialogTitle>
+            <DialogDescription className="sr-only">
+              Interactive interface for Akira Generative Engineering
+            </DialogDescription>
           </DialogHeader>
           <div className="p-0 h-full">
             <iframe 
