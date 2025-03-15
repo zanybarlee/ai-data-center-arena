@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -30,7 +31,7 @@ const predictiveMaintenanceAgents = [
     category: "Predictive Maintenance",
     rating: 4.7,
     reviews: 86,
-    image: "https://images.unsplash.com/photo-1539187577537-e54cf54ec75f?q=80&w=2187&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2000&auto=format&fit=crop",
     tags: ["Hardware", "Diagnostics", "24/7 Monitoring"],
     price: "$249/mo"
   },
