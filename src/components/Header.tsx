@@ -58,7 +58,10 @@ export function Header() {
         <div className="flex items-center space-x-4">
           <button 
             className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-primary text-white text-sm font-medium transition-all hover:bg-primary/90 hover:shadow-md"
-            onClick={() => openGetStarted()}
+            onClick={() => {
+              console.log("Header: Get Started button clicked");
+              openGetStarted();
+            }}
           >
             <Rocket className="mr-2 h-4 w-4" />
             Get Started
@@ -135,6 +138,7 @@ export function Header() {
           <button 
             className="mt-4 flex items-center justify-center h-12 px-8 rounded-full bg-primary text-white text-base font-medium transition-all hover:bg-primary/90 animate-slide-up opacity-0"
             onClick={() => {
+              console.log("Mobile Menu: Get Started button clicked");
               setIsMobileMenuOpen(false);
               openGetStarted();
             }}

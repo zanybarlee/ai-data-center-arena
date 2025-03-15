@@ -13,6 +13,7 @@ export function useActionModals() {
   const openGetStarted = () => {
     console.log("Opening Get Started modal");
     setIsGetStartedOpen(true);
+    console.log("Modal state after setting:", isGetStartedOpen); // This will still show false due to state update timing
   };
 
   const openDeployNow = (name?: string) => {
@@ -26,24 +27,27 @@ export function useActionModals() {
   };
 
   // Render all the modals
-  const ActionModals = () => (
-    <>
-      <GetStartedModal 
-        open={isGetStartedOpen} 
-        onOpenChange={setIsGetStartedOpen} 
-      />
-      <DeployNowModal 
-        open={isDeployNowOpen} 
-        onOpenChange={setIsDeployNowOpen}
-        productName={productName}
-      />
-      <ScheduleDemoModal 
-        open={isScheduleDemoOpen} 
-        onOpenChange={setIsScheduleDemoOpen}
-        productName={productName}
-      />
-    </>
-  );
+  const ActionModals = () => {
+    console.log("ActionModals rendered, isGetStartedOpen:", isGetStartedOpen);
+    return (
+      <>
+        <GetStartedModal 
+          open={isGetStartedOpen} 
+          onOpenChange={setIsGetStartedOpen} 
+        />
+        <DeployNowModal 
+          open={isDeployNowOpen} 
+          onOpenChange={setIsDeployNowOpen}
+          productName={productName}
+        />
+        <ScheduleDemoModal 
+          open={isScheduleDemoOpen} 
+          onOpenChange={setIsScheduleDemoOpen}
+          productName={productName}
+        />
+      </>
+    );
+  };
 
   return {
     openGetStarted,

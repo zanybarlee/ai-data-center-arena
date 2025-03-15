@@ -72,7 +72,10 @@ export function Hero() {
           )}>
             <button 
               className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg flex items-center justify-center gap-2"
-              onClick={() => openGetStarted()}
+              onClick={() => {
+                console.log("Hero: Explore Agents button clicked");
+                openGetStarted();
+              }}
             >
               <Rocket className="w-5 h-5" />
               Explore Agents
