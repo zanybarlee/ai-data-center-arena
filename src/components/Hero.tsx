@@ -4,38 +4,37 @@ import { useGetStartedContext, useSandboxContext, useScheduleDemoContext } from 
 import { Button } from '@/components/ui/button';
 import { scrollToElement } from '@/lib/utils';
 import { Calendar } from 'lucide-react';
-
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
-  const { openGetStarted } = useGetStartedContext();
-  const { openSandbox } = useSandboxContext();
-  const { openScheduleDemo } = useScheduleDemoContext();
-  
+  const {
+    openGetStarted
+  } = useGetStartedContext();
+  const {
+    openSandbox
+  } = useSandboxContext();
+  const {
+    openScheduleDemo
+  } = useScheduleDemoContext();
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
   const handleExploreAgents = () => {
     console.log("Explore Agents button clicked");
     openGetStarted();
   };
-
   const handleTestingSandbox = () => {
     console.log("Testing Sandbox button clicked");
     // Option 1: Scroll to the testing sandbox section
     scrollToElement('testing-sandbox');
-    
+
     // Option 2: Open the sandbox modal
     // openSandbox();
   };
-
   const handleScheduleDemo = () => {
     console.log("Schedule Demo button clicked");
     openScheduleDemo();
   };
-
-  return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20">
+  return <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20">
       {/* Decorative elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-400/10 rounded-full filter blur-3xl opacity-50 animate-float" />
@@ -61,54 +60,28 @@ export function Hero() {
       {/* Content */}
       <div className="container mx-auto max-w-5xl z-10">
         <div className="text-center">
-          <div className={cn(
-            "inline-block transition-all duration-700 mb-4",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
+          <div className={cn("inline-block transition-all duration-700 mb-4", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
             <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
               AI Data Center Arena
             </span>
           </div>
           
-          <h1 className={cn(
-            "text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight transition-all duration-700 delay-100 max-w-4xl mx-auto",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          )}>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-primary">MCP</span> AI Agents Marketplace
+          <h1 className={cn("text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight transition-all duration-700 delay-100 max-w-4xl mx-auto", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-primary">Akira</span> AI Agents Marketplace
           </h1>
           
-          <p className={cn(
-            "text-xl text-foreground/80 mb-10 max-w-2xl mx-auto transition-all duration-700 delay-200",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}>
+          <p className={cn("text-xl text-foreground/80 mb-10 max-w-2xl mx-auto transition-all duration-700 delay-200", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
             Discover certified AI agents designed to revolutionize data center operations with predictive maintenance, energy optimization, security, and compliance solutions.
           </p>
           
-          <div className={cn(
-            "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          )}>
-            <Button 
-              size="lg"
-              className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg"
-              onClick={handleExploreAgents}
-            >
+          <div className={cn("flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
+            <Button size="lg" className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg" onClick={handleExploreAgents}>
               Explore Agents
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg"
-              onClick={handleTestingSandbox}
-            >
+            <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg" onClick={handleTestingSandbox}>
               Testing Sandbox
             </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              className="w-full sm:w-auto h-14 px-8 rounded-full font-medium text-lg transition-all hover:shadow-lg flex items-center gap-2"
-              onClick={handleScheduleDemo}
-            >
+            <Button variant="secondary" size="lg" className="w-full sm:w-auto h-14 px-8 rounded-full font-medium text-lg transition-all hover:shadow-lg flex items-center gap-2" onClick={handleScheduleDemo}>
               <Calendar className="w-5 h-5" />
               Schedule Demo
             </Button>
@@ -116,36 +89,33 @@ export function Hero() {
         </div>
         
         {/* Stats */}
-        <div className={cn(
-          "grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-16 md:mt-24 transition-all duration-700 delay-400",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-        )}>
-          {[
-            { value: "25+", label: "Certified Agents" },
-            { value: "99.9%", label: "Reliability Score" },
-            { value: "30%", label: "Energy Savings" },
-            { value: "15min", label: "Integration Time" }
-          ].map((stat, index) => (
-            <div key={index} className="glass-panel rounded-xl p-4 md:p-6 text-center">
+        <div className={cn("grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-16 md:mt-24 transition-all duration-700 delay-400", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12")}>
+          {[{
+          value: "25+",
+          label: "Certified Agents"
+        }, {
+          value: "99.9%",
+          label: "Reliability Score"
+        }, {
+          value: "30%",
+          label: "Energy Savings"
+        }, {
+          value: "15min",
+          label: "Integration Time"
+        }].map((stat, index) => <div key={index} className="glass-panel rounded-xl p-4 md:p-6 text-center">
               <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2 text-primary">{stat.value}</div>
               <div className="text-sm md:text-base text-foreground/70">{stat.label}</div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
       
       {/* Scroll indicator */}
-      <div className={cn(
-        "absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-all duration-700 delay-500",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
+      <div className={cn("absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-all duration-700 delay-500", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}>
         <span className="text-sm text-foreground/60 mb-2">Scroll to explore</span>
         <div className="w-6 h-10 border-2 border-foreground/20 rounded-full flex items-center justify-center">
           <div className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-[bounce_1.5s_infinite]"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
-
 export default Hero;
