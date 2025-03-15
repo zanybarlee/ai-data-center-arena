@@ -1,25 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
-import { useActionModals } from '@/hooks/use-action-modals';
-import { Rocket, TestTube } from 'lucide-react';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
-  const { openGetStarted } = useActionModals();
   
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const scrollToTestingSandbox = () => {
-    document.getElementById('testing-sandbox')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleExploreAgents = () => {
-    console.log("Hero: Explore Agents button clicked");
-    openGetStarted();
-  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20">
@@ -75,18 +63,10 @@ export function Hero() {
             "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           )}>
-            <button 
-              className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg flex items-center justify-center gap-2"
-              onClick={handleExploreAgents}
-            >
-              <Rocket className="w-5 h-5" />
+            <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:shadow-lg">
               Explore Agents
             </button>
-            <button 
-              className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg flex items-center justify-center gap-2"
-              onClick={scrollToTestingSandbox}
-            >
-              <TestTube className="w-5 h-5" />
+            <button className="w-full sm:w-auto h-14 px-8 rounded-full bg-white dark:bg-black border border-input text-foreground font-medium text-lg transition-all hover:bg-secondary hover:shadow-lg">
               Testing Sandbox
             </button>
           </div>
