@@ -1,10 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { useGetStartedContext } from "@/App";
+import { ExternalLink } from "lucide-react";
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog";
 
 const GetStartedCTA = () => {
   const { openGetStarted } = useGetStartedContext();
+  const [isFrameOpen, setIsFrameOpen] = useState(false);
 
   return (
     <div className="bg-secondary/30 p-8 md:p-12 rounded-2xl border border-border mb-16">
@@ -17,13 +25,41 @@ const GetStartedCTA = () => {
           </p>
         </div>
         
-        <Button 
-          onClick={openGetStarted}
-          className="w-full md:w-auto h-12 px-8 bg-primary hover:bg-primary/90"
-        >
-          Get Started
-        </Button>
+        <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-4 md:flex-row">
+          <Button 
+            onClick={() => setIsFrameOpen(true)}
+            className="w-full md:w-auto h-12 px-8 bg-primary/90 hover:bg-primary"
+            variant="default"
+          >
+            Call Akira Generative Engineering <ExternalLink className="ml-2 h-4 w-4" />
+          </Button>
+          
+          <Button 
+            onClick={openGetStarted}
+            className="w-full md:w-auto h-12 px-8 bg-primary hover:bg-primary/90"
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
+
+      <Dialog open={isFrameOpen} onOpenChange={setIsFrameOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] p-0">
+          <DialogHeader className="p-6 pb-0">
+            <DialogTitle>Akira Generative Engineering</DialogTitle>
+          </DialogHeader>
+          <div className="p-0 h-full">
+            <iframe 
+              src="http://localhost:999" 
+              className="w-full h-[calc(80vh-80px)]"
+              title="Akira Generative Engineering" 
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
