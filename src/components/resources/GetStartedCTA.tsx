@@ -28,15 +28,18 @@ const GetStartedCTA = () => {
         <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-4 md:flex-row">
           <Button 
             onClick={() => setIsFrameOpen(true)}
-            className="w-full md:w-auto h-12 px-8 bg-primary/90 hover:bg-primary"
+            className="w-full md:w-auto h-12 px-8 bg-primary hover:bg-primary/90"
             variant="default"
           >
-            Call Akira Generative Engineering <ExternalLink className="ml-2 h-4 w-4" />
+            <span className="flex items-center">
+              Call Akira Generative Engineering 
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </span>
           </Button>
           
           <Button 
             onClick={openGetStarted}
-            className="w-full md:w-auto h-12 px-8 bg-primary hover:bg-primary/90"
+            className="w-full md:w-auto h-12 px-8 bg-primary/90 hover:bg-primary"
           >
             Get Started
           </Button>
