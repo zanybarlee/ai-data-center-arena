@@ -139,7 +139,7 @@ export const designBuildAgents = [
     category: "Design & Build",
     rating: 4.8,
     reviews: 52,
-    image: "https://images.unsplash.com/photo-1583160247711-2191776b4b91?q=80&w=2072&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=5530&auto=format&fit=crop",
     tags: ["Cooling", "Thermal Analysis", "Energy Efficiency"],
     price: "Free"
   }
