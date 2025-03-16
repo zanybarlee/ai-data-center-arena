@@ -117,7 +117,7 @@ export const designBuildAgents = [
     category: "Design & Build",
     rating: 4.9,
     reviews: 76,
-    image: "https://images.unsplash.com/photo-1556760544-74068565f05c?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop",
     tags: ["Architecture", "3D Modeling", "Thermal Mapping"],
     price: "$299/mo"
   },
